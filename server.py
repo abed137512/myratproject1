@@ -2,7 +2,7 @@ from flask import Flask, request, render_template
 import os
 import sqlite3
 
-app = Flask(name)
+app = Flask(__name__)
 
 def init_db():
     conn = sqlite3.connect('devices.db')
@@ -68,7 +68,7 @@ def get_command(device_id):
     conn.close()
     return ''
 
-if name == 'main':
+if __name__ == '__main__':
     init_db()
     os.makedirs('Uploads', exist_ok=True)
     port = int(os.environ.get('PORT', 5000))
